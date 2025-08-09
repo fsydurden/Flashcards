@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Notes Flashcards</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="app-container">
+        <header>
+            <h1>Book Notes Flashcards 📚</h1>
+            <p>Add notes from your books and review them any time.</p>
+        </header>
+
+        <section class="add-card-section">
+            <h2>Add a New Note</h2>
+            <form id="add-card-form">
+                <div class="form-group">
+                    <label for="book-title">Book Title</label>
+                    <input type="text" id="book-title" placeholder="e.g., Dune" required>
+                </div>
+                <div class="form-group">
+                    <label for="card-front">Front of Card (Question/Term)</label>
+                    <textarea id="card-front" rows="3" placeholder="e.g., What is the Spice Melange?" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="card-back">Back of Card (Answer/Definition)</label>
+                    <textarea id="card-back" rows="3" placeholder="e.g., A psychoactive spice that enables interstellar travel..." required></textarea>
+                </div>
+                <button type="submit" class="btn" id="add-card-btn">Save Flashcard</button>
+            </form>
+        </section>
+
+        <hr>
+        
+        <section id="collection-view">
+            <h2>Your Book Collection</h2>
+            <div id="book-collection-container" class="book-grid">
+                </div>
+        </section>
+        
+        <section id="notes-view" class="hidden">
+            <div class="notes-header">
+                <button id="back-to-collection-btn" class="btn btn-secondary">← Back to Collection</button>
+                <h2 id="notes-view-title">Notes for...</h2>
+            </div>
+            <div id="flashcard-container" class="flashcard-grid">
+                </div>
+        </section>
+
+    </div>
+
+    <div id="review-modal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <button class="modal-close-btn" id="modal-close-btn">&times;</button>
+            <div id="review-card-container">
+                </div>
+            <div class="review-nav">
+                <button id="prev-card-btn" class="btn btn-secondary">Previous</button>
+                <span id="review-progress"></span>
+                <button id="next-card-btn" class="btn">Next</button>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="script.js"></script>
+</body>
+</html>
