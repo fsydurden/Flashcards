@@ -14,7 +14,7 @@
     <div class="app-container">
         <header>
             <h1>Book Notes Flashcards 📚</h1>
-            <p>Add notes from your books and review them any time.</p>
+            <button id="theme-toggle-btn" class="theme-btn" title="Toggle dark mode">🌙</button>
         </header>
 
         <section class="add-card-section">
@@ -30,7 +30,17 @@
                 </div>
                 <div class="form-group">
                     <label for="card-back">Back of Card (Answer/Definition)</label>
-                    <textarea id="card-back" rows="3" placeholder="e.g., A psychoactive spice that enables interstellar travel..." required></textarea>
+                    <textarea id="card-back" rows="3" placeholder="e.g., A psychoactive spice..." required></textarea>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="card-page">Page Number (Optional)</label>
+                        <input type="text" id="card-page" placeholder="e.g., 42">
+                    </div>
+                    <div class="form-group">
+                        <label for="card-tags">Tags (comma-separated)</label>
+                        <input type="text" id="card-tags" placeholder="e.g., key-concept, chapter-1">
+                    </div>
                 </div>
                 <button type="submit" class="btn" id="add-card-btn">Save Flashcard</button>
             </form>
@@ -39,9 +49,21 @@
         <hr>
         
         <section id="collection-view">
-            <h2>Your Book Collection</h2>
-            <div id="book-collection-container" class="book-grid">
+            <div class="collection-controls">
+                <div class="search-sort-container">
+                    <input type="search" id="search-bar" placeholder="Search books...">
+                    <select id="sort-select">
+                        <option value="date-desc">Sort by: Newest</option>
+                        <option value="date-asc">Sort by: Oldest</option>
+                        <option value="title-asc">Sort by: Title (A-Z)</option>
+                        <option value="title-desc">Sort by: Title (Z-A)</option>
+                    </select>
                 </div>
+                <div class="tags-container" id="tags-filter-container">
+                    </div>
+            </div>
+            <h2>Your Book Collection</h2>
+            <div id="book-collection-container" class="book-grid"></div>
         </section>
         
         <section id="notes-view" class="hidden">
@@ -49,8 +71,19 @@
                 <button id="back-to-collection-btn" class="btn btn-secondary">← Back to Collection</button>
                 <h2 id="notes-view-title">Notes for...</h2>
             </div>
-            <div id="flashcard-container" class="flashcard-grid">
-                </div>
+            <div id="flashcard-container" class="flashcard-grid"></div>
+        </section>
+
+        <hr>
+
+        <section class="data-management">
+            <h2>Data Management</h2>
+            <p>Save your collection to a file or load it from a backup.</p>
+            <div class="data-buttons">
+                <button id="export-btn" class="btn btn-secondary">Export Data</button>
+                <button id="import-btn" class="btn btn-secondary">Import Data</button>
+                <input type="file" id="import-file-input" class="hidden" accept=".json">
+            </div>
         </section>
 
     </div>
@@ -58,8 +91,11 @@
     <div id="review-modal" class="modal-overlay hidden">
         <div class="modal-content">
             <button class="modal-close-btn" id="modal-close-btn">&times;</button>
-            <div id="review-card-container">
-                </div>
+            <div id="review-card-container"></div>
+            <div class="review-difficulty">
+                <button class="btn btn-difficulty-hard" data-difficulty="hard">Hard</button>
+                <button class="btn btn-difficulty-easy" data-difficulty="easy">Easy</button>
+            </div>
             <div class="review-nav">
                 <button id="prev-card-btn" class="btn btn-secondary">Previous</button>
                 <span id="review-progress"></span>
@@ -67,7 +103,6 @@
             </div>
         </div>
     </div>
-
 
     <script src="script.js"></script>
 </body>
